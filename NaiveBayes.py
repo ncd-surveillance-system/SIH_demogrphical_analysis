@@ -20,9 +20,11 @@ X = np.array(diabetes.loc[:, diabetes.columns != 'Outcome'])  # 710x8
 y = np.array(diabetes.loc[:, diabetes.columns == 'Outcome'])  # 710x1
 
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=37)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=37)
 
 nb = GaussianNB()
 nb.fit(X_train, y_train.ravel())
 score = nb.score(X_test, y_test)
 print(score)
+# Avg accuracy: 81%
