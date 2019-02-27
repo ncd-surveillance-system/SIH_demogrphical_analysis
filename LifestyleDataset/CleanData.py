@@ -17,11 +17,12 @@ print(diabetes.columns)
 
 diabetes = diabetes.drop(['ID of participants', 'Year of birth', 'Month of birth', 
                           'Day of birth', 'Year of data', 'Time of data', 'Fasting blood glucose', 
-                          'cardiograph', 'eyeground', 'Unnamed: 46', 
+                          'cardiograph', 'eyeground', 
                           'Taking health care from doctor_category', 
                           'PHN_category', 'Care-category', 'Weight changes from 20 yr-category'
-                          ], axis=1)
+                          'Alcohol amount-category'], axis=1)
 
+diabetes = diabetes.astype(np.object)
 diabetes.dropna(inplace=True, how='any')
 diabetes = diabetes[(diabetes != ' ').all(axis=1)]
 
