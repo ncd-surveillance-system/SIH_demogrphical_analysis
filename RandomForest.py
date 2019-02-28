@@ -11,13 +11,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
-diabetes = pd.read_csv('diabetes_balanced.csv')
-diabetes = diabetes[['Weight', 'BMI', 'Taking medication for hypertenstion', 'Exercise more than 30 minutes-category',
-                     'Waist circumference (cm)', 'Improve lifestyle habits', 'Walking or physical activity-category',
-                     'Quick walking-category', 'Age', 'HbA1c_category']]
-
-diabetes.to_csv('non-medical.csv', index=False)
-
+diabetes = pd.read_csv('diabetes_cleaned_balanced.csv')
+diabetes.drop('HbA1c', axis=1, inplace=True)
 
 X = np.array(diabetes.loc[:, diabetes.columns != 'HbA1c_category'])  # 8256x52
 y = np.array(diabetes.loc[:, diabetes.columns == 'HbA1c_category'])  # 8256x1
@@ -34,4 +29,4 @@ rf.fit(X_train, y_train.ravel())
 score = rf.score(X_test, y_test)
 
 print(score)
-# Avg accuracy: 88%
+# Avg accuracy: 93%
