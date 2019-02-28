@@ -16,11 +16,14 @@ diabetes = diabetes[['Weight', 'BMI', 'Taking medication for hypertenstion', 'Ex
                      'Waist circumference (cm)', 'Improve lifestyle habits', 'Walking or physical activity-category',
                      'Quick walking-category', 'Age', 'HbA1c_category']]
 
+diabetes.to_csv('non-medical.csv', index=False)
+
 
 X = np.array(diabetes.loc[:, diabetes.columns != 'HbA1c_category'])  # 8256x52
 y = np.array(diabetes.loc[:, diabetes.columns == 'HbA1c_category'])  # 8256x1
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=37)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=37)
 # X_train: 6192x52
 # X_test: 2064x52
 
