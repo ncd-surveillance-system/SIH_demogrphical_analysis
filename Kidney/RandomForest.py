@@ -10,12 +10,13 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+import pickle
 
-diabetes = pd.read_csv('diabetes_cleaned_balanced_NonMedical.csv')
+diabetes = pd.read_csv('Kidney_balanced.csv')
 
 
-X = np.array(diabetes.loc[:, diabetes.columns != 'HbA1c_category'])  # 8256x9
-y = np.array(diabetes.loc[:, diabetes.columns == 'HbA1c_category'])  # 8256x1
+X = np.array(diabetes.loc[:, diabetes.columns != 'Kidney'])  # 8256x9
+y = np.array(diabetes.loc[:, diabetes.columns == 'Kidney'])  # 8256x1
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.25, random_state=37)
@@ -26,7 +27,9 @@ rf = RandomForestClassifier(n_estimators=1000, random_state=0)
 
 rf.fit(X_train, y_train.ravel())
 
+pickle.dump(rf, open('PredictKidney.pickle', 'wb'))
+
 score = rf.score(X_test, y_test)
 
 print(score)
-# Avg accuracy: 88%
+# Avg accuracy: 86%
