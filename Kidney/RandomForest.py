@@ -23,7 +23,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # X_train: 6192x9
 # X_test: 2064x9
 
-rf = RandomForestClassifier(n_estimators=1000, random_state=0)
+rf = RandomForestClassifier(n_estimators=100, random_state=0)
 
 rf.fit(X_train, y_train.ravel())
 

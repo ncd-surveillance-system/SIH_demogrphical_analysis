@@ -19,7 +19,7 @@ diabetes = diabetes.drop(['ID of participants', 'Year of birth', 'Month of birth
                           'Day of birth', 'Year of data', 'Time of data', 'Fasting blood glucose',
                           'cardiograph', 'eyeground',
                           'Taking health care from doctor_category',
-                          'PHN_category', 'Care-category', 'Weight changes from 20 yr-category'
+                          'PHN_category', 'Care-category', 'Weight changes from 20 yr-category',
                           'Alcohol amount-category'], axis=1)
 
 diabetes = diabetes.astype(np.object)
@@ -33,4 +33,4 @@ print(diabetes.shape)
 
 diabetes.to_csv('diabetes_cleaned.csv', index=False)
 
-# 4893x54
+# 5267x53
