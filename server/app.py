@@ -14,6 +14,7 @@ import io
 import boto3
 from io import StringIO
 
+from config import access_key_id, secret_access_key
 
 app = Flask(__name__)
 
@@ -69,8 +70,8 @@ airdata = ''
 def connectDatabase():
     global s3, airdata
     s3 = boto3.client('s3',
-                      aws_access_key_id="AKIAJ4XC26IS3BL6IBBQ",
-                      aws_secret_access_key="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"
+                      aws_access_key_id=access_key_id,
+                      aws_secret_access_key=secret_access_key
                       )
     obj = s3.get_object(Bucket='analysts-bucket', Key='non-medical.csv')
     airdata = pd.read_csv(io.BytesIO(obj['Body'].read()))
